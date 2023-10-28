@@ -32,7 +32,10 @@ fun MyApp(content: @Composable () -> Unit){
 
 @Composable
 fun MainContent(){
-    Text(text = "YHRJFJ")
+    Surface(color = MaterialTheme.colorScheme.background
+    ) {
+        Text(text = "YHRJFJ")
+    }
 }
 
 @Preview(showBackground = true)
