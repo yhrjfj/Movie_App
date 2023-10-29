@@ -93,7 +93,9 @@ fun MainContent(
     Column {
         LazyColumn() {
             items(items = movieList) {
-                MovieRow(movie = it)
+                MovieRow(movie = it){movie ->
+                    Log.d("TAG", "MainContent: $movie")
+                }
             }
         }
     }
@@ -101,12 +103,14 @@ fun MainContent(
 
 // MovieRow
 @Composable
-fun MovieRow(movie: String) {
+fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
     Card(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .height(130.dp),
+            .height(130.dp).clickable {
+                onItemClick(movie)
+            },
         shape = RoundedCornerShape(corner = CornerSize(15.dp)),
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
         elevation = CardDefaults.cardElevation(5.dp)
