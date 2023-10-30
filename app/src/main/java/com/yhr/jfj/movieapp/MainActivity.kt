@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.yhr.jfj.movieapp.navigation.MovieNavigation
 import com.yhr.jfj.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,8 +49,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                Column(modifier = Modifier.padding(top = 70.dp, start = 8.dp, end = 8.dp)) {
-                    MainContent()
+                Column() {
+                    MovieNavigation()
                 }
             }
         }
@@ -61,45 +62,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    colors = TopAppBarDefaults.smallTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.background
-                    ),
-                    title = { Text(text = "Anime & Movie") },
-                )
-            }
-        ) {
-            content()
-        }
+        content()
     }
 }
 
-@Composable
-fun MainContent(
-    movieList: List<String> = listOf(
-        "Attack On Titan",
-        " One Piece",
-        "Death Note",
-        "Dragon Ball Z",
-        "Avatar",
-        "300",
-        "Harry Potter",
-        "Life Of Pie"
-    )
-) {
-    Column {
-        LazyColumn() {
-            items(items = movieList) {
-                MovieRow(movie = it){movie ->
-                    Log.d("TAG", "MainContent: $movie")
-                }
-            }
-        }
-    }
-}
 
 // MovieRow
 @Composable
@@ -108,7 +74,8 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .height(130.dp).clickable {
+            .height(130.dp)
+            .clickable {
                 onItemClick(movie)
             },
         shape = RoundedCornerShape(corner = CornerSize(15.dp)),
@@ -134,10 +101,10 @@ fun MovieRow(movie: String, onItemClick: (String) -> Unit = {}) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApp {
-        MainContent()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    MyApp {
+//        MovieNavigation()
+//    }
+//}
