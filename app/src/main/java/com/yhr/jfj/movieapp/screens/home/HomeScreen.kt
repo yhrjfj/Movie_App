@@ -17,11 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.yhr.jfj.movieapp.MovieRow
+import com.yhr.jfj.movieapp.navigation.MovieScreens
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,8 +55,9 @@ fun MainContent(
     Column {
         LazyColumn(modifier = Modifier.padding(start = 8.dp, top = 70.dp, end = 8.dp)) {
             items(items = movieList) {
-                MovieRow(movie = it){movie ->
-                    Log.d("TAG", "MainContent: $movie")
+                MovieRow(movie = it) {
+                    navController.navigate(route = MovieScreens.DetailsScreen.name)
+//                    Log.d("TAG", "MainContent: $movie")
                 }
             }
         }
