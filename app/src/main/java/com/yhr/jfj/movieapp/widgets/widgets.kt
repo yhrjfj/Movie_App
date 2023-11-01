@@ -21,12 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yhr.jfj.movieapp.model.Movie
+import com.yhr.jfj.movieapp.model.getMovies
 
 // MovieRow
+@Preview
 @Composable
-fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
+fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) {
     Card(
         modifier = Modifier
             .padding(8.dp)
