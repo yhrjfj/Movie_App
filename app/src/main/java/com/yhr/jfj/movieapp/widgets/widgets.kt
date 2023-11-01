@@ -1,6 +1,7 @@
 package com.yhr.jfj.movieapp.widgets
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.yhr.jfj.movieapp.model.Movie
 import com.yhr.jfj.movieapp.model.getMovies
 
@@ -49,6 +52,7 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
+            // Movie poster
             Surface(
                 modifier = Modifier
                     .padding(12.dp)
@@ -56,11 +60,20 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
                 shape = RoundedCornerShape(corner = CornerSize(15.dp)),
                 shadowElevation = 4.dp
             ) {
-                Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Movie Image")
+                Image(
+                    painter = rememberAsyncImagePainter(model = movie.images[0]),
+                    contentDescription = "Movie Poster"
+                )
+//                Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Movie Image")
             }
+
+            // Movie information
             Column(modifier = Modifier.padding(1.dp)) {
                 Text(text = movie.title, style = MaterialTheme.typography.headlineSmall)
-                Text(text = "Director: ${movie.director}", style = MaterialTheme.typography.labelMedium)
+                Text(
+                    text = "Director: ${movie.director}",
+                    style = MaterialTheme.typography.labelMedium
+                )
                 Text(text = "Release: ${movie.year}", style = MaterialTheme.typography.labelMedium)
             }
         }
