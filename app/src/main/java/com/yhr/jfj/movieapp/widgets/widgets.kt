@@ -58,7 +58,7 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
             ) {
                 Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Movie Image")
             }
-            Column(modifier = Modifier.padding(4.dp)) {
+            Column(modifier = Modifier.padding(1.dp)) {
                 Text(text = movie.title, style = MaterialTheme.typography.headlineSmall)
                 Text(text = "Director: ${movie.director}", style = MaterialTheme.typography.labelMedium)
                 Text(text = "Release: ${movie.year}", style = MaterialTheme.typography.labelMedium)

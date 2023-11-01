@@ -66,6 +66,8 @@ dependencies {
 
     // Dependencies for navigation
     val nav_version = "2.7.4"
-
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Dependencies for access image from a URL
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }
