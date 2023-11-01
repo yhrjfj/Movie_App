@@ -37,7 +37,7 @@ fun DetailsScreen(navController: NavController, movieData: String?) {
                 containerColor = MaterialTheme.colorScheme.primary,
                 titleContentColor = MaterialTheme.colorScheme.background
             ), title = {
-                Text(text = "Anime & Movie")
+                Text(text = "Movie")
             }, navigationIcon = {
                 IconButton(onClick = {
                     navController.popBackStack()
