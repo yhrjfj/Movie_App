@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -95,20 +96,39 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
                 Text(text = movie.title, style = MaterialTheme.typography.headlineSmall)
                 Text(
                     text = "Director: ${movie.director}",
-                    style = MaterialTheme.typography.labelMedium
+                    style = MaterialTheme.typography.labelLarge
                 )
-                Text(text = "Release: ${movie.year}", style = MaterialTheme.typography.labelMedium)
+                Text(text = "Release: ${movie.year}", style = MaterialTheme.typography.labelLarge)
                 // Expended column
                 AnimatedVisibility(visible = expanded) {
                     Column {
-                        Text(buildAnnotatedString {
-                            withStyle(style = SpanStyle(Color.DarkGray, fontSize = 13.sp)){
+                        Text(
+                            buildAnnotatedString {
+                            withStyle(style = SpanStyle(Color.DarkGray, fontSize = 13.sp)) {
                                 append("Plot: ")
                             }
-                            withStyle(style = SpanStyle(Color.DarkGray, fontSize = 13.sp, fontWeight = FontWeight.Bold)){
+                            withStyle(
+                                style = SpanStyle(
+                                    Color.DarkGray,
+                                    fontSize = 13.sp,
+                                )
+                            ) {
                                 append(movie.plot)
                             }
-                        })
+                        }, modifier = Modifier.padding(3.dp))
+                        Divider(modifier = Modifier.padding(3.dp))
+                        Text(
+                            text = "Actor: ${movie.actors}",
+                            style = MaterialTheme.typography.labelLarge
+                        )
+                        Text(
+                            text = "Rating: ${movie.rating}",
+                            style = MaterialTheme.typography.labelLarge
+                        )
+                        Text(
+                            text = "Actor: ${movie.actors}",
+                            style = MaterialTheme.typography.labelLarge
+                        )
                     }
                 }
 
